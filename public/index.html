@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="cnc.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="app.css" media="screen" />
+  <!-- <style>
+    .button-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+  </style> -->
+</head>
+
+<body>
+  <script defer src="app.js"></script>
+  <div class="header">
+    <div class="field button-container">
+      <button onclick="location.href = 'leaderboard.html'">LeaderBoard</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="instructions" id="instructions">
+      <div class="instructions-button">
+        <button onclick="toggleInstructions(this)">Hide Info</button>
+      </div>  
+      <div id="instructions-content">
+        <h1>About This App</h1>
+        <ul>
+          <li>This application is a client-side application (not server-side rendered)</li>
+          <li>It starts by making XHR call to get basic info like partner ID and uiconf IDs (player and CNC)</li>
+          <ul>
+            <li>Had this been a server-side-rendered page, these parameters could have been "burned" into the page on the server and save the XHR call</li>
+          </ul>
+          <li>The form allows you to input the user details, entry ID and virtual event ID</li>
+          <li>all form info gets stored in sessionStorage, so can be easily re-used</li>
+          <li>Click on "init data" to make an XHR call that will return</li>
+          <ul>
+            <li>user KS for player</li>
+            <li>JWT for CNC</li>
+            <li>entry object</li>
+            <li>KME room launch info, if applicable</li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="app">
+      <div class="input">
+        <div class="field"><label for="userId">User ID</label> <input type="text" id="userId" /></div>
+        <div class="field"><label for="firstname">First Name</label> <input type="text" id="firstname" /></div>
+        <div class="field"><label for="lastname">Last Name</label> <input type="text" id="lastname" /></div>
+        <div class="field"><label for="company">Company</label> <input type="text" id="company" /></div>
+        <div class="field"><label for="email">Email</label> <input type="text" id="email" /></div>
+        <div class="field"><label for="entryId">Entry ID</label> <input type="text" id="entryId" /></div>
+        <div class="field"><label for="virtualEventId">Virtual Event ID</label> <input type="text" id="virtualEventId" /></div>
+        <div class="field">
+          <label for="setAsModerator">Set As Moderator?</label> 
+          <input type="checkbox" id="setAsModerator" />
+          <div class="comment" id="isModeratorComment"></div>
+        </div>
+        <div class="field"><button onclick="initData()">Init App</button></div>
+      </div>
+      <div class="content">
+        <div class="left">
+          <!--The player div -->
+          <h2 id="name" style="text-align: center"></h2>
+          <div id="player-container" class="hide">
+            <div class="container">
+              <div id="player" style="width: 700px; height: 400px; padding-left: 250px">
+              </div>
+            </div>
+          </div>
+
+          <!--The KME div -->
+          <div id="kme-parent-container"  class="hide">
+            <iframe name="my_iframe" wmode="transparent"
+              allow="microphone *; camera *; speakers *; usermedia *; autoplay *; fullscreen *; display-capture *;"
+              width="100%" height="700px"></iframe>
+            <form id="my-form" target="my_iframe" name="ltiLaunchForm" method="POST"
+              action="https://smart.newrow.com/backend/lti/course"></form>
+            <div id="room"
+              style="width: 560px; height: 395px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <h3>XHR Response Info</h3>
+          <div id="xhrlog"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

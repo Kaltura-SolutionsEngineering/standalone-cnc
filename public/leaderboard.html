@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Target Page</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+      initData();
+
+      async function initData() {
+        try {
+          const response = await fetch( window.location.origin + "/embed-cnc/get-leaderboard");
+          const jsonResponse = await response.json();
+
+          const jsonData = jsonResponse.objects;
+
+          generateTableRows(jsonData);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      // Function to generate the HTML table rows based on the JSON data
+      function generateTableRows(data) {
+        var tableBody = document.getElementById("tableBody");
+
+        data.forEach(function (entry) {
+          var row = document.createElement("tr");
+
+          var rankCell = document.createElement("td");
+          rankCell.textContent = entry.rank;
+          row.appendChild(rankCell);
+
+          var nameCell = document.createElement("td");
+          nameCell.textContent = entry.name;
+          row.appendChild(nameCell);
+
+          var pointsCell = document.createElement("td");
+          pointsCell.textContent = entry.score;
+          row.appendChild(pointsCell);
+
+          tableBody.appendChild(row);
+        });
+      }
+    </script>
+  </body>
+</html>

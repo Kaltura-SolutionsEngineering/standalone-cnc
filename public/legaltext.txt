@@ -1,0 +1,5 @@
+Transcripts of all chats (e.g., one-to-one conversations, virtual meeting rooms, and customer support conversations) will be retained by Salesforce for safety and security purposes. In using the Chat & Collaboration feature, you must follow the Salesforce Terms of Use (https://www.salesforce.com/company/legal/sfdc-website-terms-of-service/).
+
+If you would prefer to not participate in one-to-one conversations, turn ‘Enable Chat’ off. If you choose to participate in one-to-one conversations, turn ‘Enable Chat’ on.  Your name, company name, and job title will appear in the event’s attendee directory that will be accessible to all attendees.
+
+Your full name will appear in all chats (e.g., one-to-one conversations, virtual meeting rooms, and customer support conversations). If you’d prefer for only your first name to appear in one-to-one conversations, turn ‘Show Full Name’ off. Your full name will still appear in virtual meeting rooms and customer support conversations.
